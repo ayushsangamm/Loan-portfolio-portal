@@ -21,10 +21,3 @@ This is a frontend dashboard application for managing an enterprise loan portfol
 - **Charts:** Recharts
 - **Icons:** Lucide React
 
-d
-
-To build the project for production:
-```bash
-npm run build
-```
-This compiles the files and outputs static assets to the `dist` directory, which can be deployed to static hosting platforms like Vercel or Netlify.
