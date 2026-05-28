@@ -1,85 +1,51 @@
-# 💼 Antigravity - Enterprise Loan Portfolio Management System
+# Antigravity Loan Portfolio Portal
 
-A high-fidelity, premium credit analytics and loan portfolio management portal designed for modern lenders, banks, and NBFCs. Built with a focus on rich aesthetics, interactive dashboards, and real-time state synchronization.
+This is a frontend dashboard application for managing an enterprise loan portfolio. It is designed for lenders, loan officers, and credit managers to track loans, borrowers, and lifecycle pipelines in a single clean web interface.
 
----
+## Key Features
 
-## 🚀 Deployed System Link
-👉 **Live Demo**: [Deploy your Vercel link here!]
+- **Dashboard:** Overview of core portfolio metrics like total portfolio value, active loan accounts, and default rates with interactive charts.
+- **Kanban Board Pipeline:** A visual board to manage loan application workflows. It groups loans by status (Pending, Active, Closed, Defaulted) and allows you to transition their states (e.g. approve a pending loan, mark an active loan as paid, or flag defaults).
+- **EMI & Amortization Calculator:** A simulation worksheet where loan officers can drag sliders to adjust principal, interest rates, and tenure to calculate monthly EMIs and view month-on-month amortization tables.
+- **Alert Notifications:** A notification popover in the navigation header that flags overdue loans and pending reviews for immediate attention.
+- **Theme Switcher:** Toggles the interface between Light and Dark mode, persisting the user's preference using local storage.
 
----
+## Tech Stack
 
-## ✨ Premium Core Features
+- **Frontend Core:** React, TypeScript, Vite
+- **State Management:** Redux Toolkit
+- **Styles:** Tailwind CSS v4
+- **Charts:** Recharts
+- **Icons:** Lucide React
 
-### 📊 1. Operational Dashboard & Analytics
-- **KPI Metrics**: Real-time monitoring of **Total Portfolio Value**, **Active Accounts Count**, **NPA (Non-Performing Assets) Default Rate**, and cumulative portfolios.
-- **Interactive Visualizations**: Integrated Recharts trends representing asset growth vectors and active loan status distributions.
-- **Transaction Ledger**: Dynamic tracking of recent capital disbursements with immediate detailed audit ledger redirects.
+## Local Storage Persistence
 
-### 📋 2. Credit Lifecycle Pipeline (Kanban Board)
-- **Lifecycle Columns**: Visual flow columns tracking loans through **Review Queue** (`Pending`), **Active Portfolio** (`Active`), **Settled Ledger** (`Closed`), and **NPA / High Risk** (`Defaulted`).
-- **Quick Actions Decision Engine**: Instant administrative buttons on pipeline cards to transition states:
-  - *Pending* ➜ **Disburse Capital** (Activates interest accumulation).
-  - *Active* ➜ **Mark Settled** (Closes ledger) or **Flag Default** (Initiates collections).
-  - *Defaulted* ➜ **Recover & Close**.
-- **Credit Integration**: Maps live borrower profiles and real-time FICO credit scores from the database.
+The application runs entirely on the client side using a simulated API layer. All CRUD operations (adding loans, updating statuses, switching themes) are persisted locally in the browser's `localStorage`. This allows the application to be deployed as a static site (like Vercel) while remaining fully dynamic.
 
-### 🧮 3. Interactive Credit Worksheet (EMI Calculator)
-- **Simulators**: Real-time sliding controls for Principal Capital ($P$), Annual Interest Rate ($R$), and Tenure Period ($N$).
-- **Amortization Engine**: Computes Monthly EMIs, Cost of Borrowing (Total Interest), and Lifetime Repayments using RBI standard calculations.
-- **Granular Ledger Table**: Generates a Month-on-Month amortization sheet outlining principal deduction and interest charge splits with support to print reports.
+## Local Setup
 
-### 🔔 4. Priority Alert Center
-- **Popover Alerts**: Real-time notifications Bell in the Navbar mapping high-priority ledger events.
-- **Risk Indicators**: Auto-flags overdue accounts and incoming credit reviews with quick navigational redirects for immediate settlement.
+To run this project on your local machine:
 
-### 🌓 5. Dynamic Theme Engine
-- **Persistent Switcher**: Single-click toggles between premium HSL slate light mode and sleek carbon-slate dark mode.
-- **Auto-Respect**: Detects system color preferences on first load and persists user settings securely in `localStorage`.
-
----
-
-## 🛠️ Technology Stack & Architecture
-
-- **Frontend Core**: React 19 (Hooks, Context, Memoized States, Suspense Lazy Routing).
-- **Style Architecture**: Tailwind CSS v4 (Class-based dark variant mapping).
-- **State Management**: Redux Toolkit (Slices, Async Thunks, global client-side dispatch).
-- **Mathematical Rendering**: Recharts (Dynamic Responsive SVG Pie & Area charts).
-- **Typography & Icons**: Inter Font Family and custom vector Lucide Icons.
-
-### 💎 Architectural Highlight: Decoupled Persistent Engine
-To achieve serverless execution, the portal implements a **Simulated Client-Side API Layer**. All database reads, additions, and updates are persisted securely using browser `localStorage` initialized from a core `db.json` database. This ensures:
-- Blazing-fast responsive speeds.
-- Serverless static deployment on CDNs like **Vercel** with fully dynamic CRUD interactions.
-- Low-latency operations ideal for clean portfolio reviews.
-
----
-
-## 💻 Local Development Setup
-
-To run this project locally in your workspace:
-
-1. **Clone & Open folder**:
-   ```bash
-   cd d:\projects
-   ```
-
-2. **Install Node dependencies**:
+1. Clone or open the project folder in your terminal.
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-3. **Start local development server**:
+3. Run the development server:
    ```bash
    npm run dev
    ```
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-4. **Launch Application**:
-   Navigate to **`http://localhost:5173/`** in your browser to experience the lending platform!
+If you also want to run the local mock backend for development using JSON-Server:
+```bash
+npm run server
+```
 
----
+## Production Build
 
-## 👥 Administrative System Roles
-- **System Role**: Portfolio Officer / Credit Administrator (`Ayush Admin`)
-- **Gateway Status**: Online (v3.4.1)
-- **Compliance standard**: RBI Amortization Guidelines
+To build the project for production:
+```bash
+npm run build
+```
+This compiles the TypeScript files and outputs static assets to the `dist` directory, which can be deployed to static hosting platforms like Vercel or Netlify.
