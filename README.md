@@ -3,7 +3,7 @@
 This is a frontend dashboard application for managing an enterprise loan portfolio. It is designed for lenders, loan officers, and credit managers to track loans, borrowers, and lifecycle pipelines in a single clean web interface.
 
 ## Live Demo
-👉 **Live Link**: [loan-portfolio-portal.vercel.app](https://loan-portfolio-portal.vercel.app/)
+**Live Link**: [loan-portfolio-portal.vercel.app](https://loan-portfolio-portal.vercel.app/)
 
 ## Key Features
 
