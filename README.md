@@ -21,31 +21,7 @@ This is a frontend dashboard application for managing an enterprise loan portfol
 - **Charts:** Recharts
 - **Icons:** Lucide React
 
-## Local Storage Persistence
-
-The application runs entirely on the client side using a simulated API layer. All CRUD operations (adding loans, updating statuses, switching themes) are persisted locally in the browser's `localStorage`. This allows the application to be deployed as a static site (like Vercel) while remaining fully dynamic.
-
-## Local Setup
-
-To run this project on your local machine:
-
-1. Clone or open the project folder in your terminal.
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-4. Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-If you also want to run the local mock backend for development using JSON-Server:
-```bash
-npm run server
-```
-
-## Production Build
+d
 
 To build the project for production:
 ```bash
