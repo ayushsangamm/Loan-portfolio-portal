@@ -1,4 +1,4 @@
-# Antigravity Loan Portfolio Portal
+#  Loan Portfolio Portal
 
 This is a frontend dashboard application for managing an enterprise loan portfolio. It is designed for lenders, loan officers, and credit managers to track loans, borrowers, and lifecycle pipelines in a single clean web interface.
 
