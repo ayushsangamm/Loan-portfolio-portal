@@ -2,6 +2,9 @@
 
 This is a frontend dashboard application for managing an enterprise loan portfolio. It is designed for lenders, loan officers, and credit managers to track loans, borrowers, and lifecycle pipelines in a single clean web interface.
 
+## Live Demo
+👉 **Live Link**: [loan-portfolio-portal.vercel.app](https://loan-portfolio-portal.vercel.app/)
+
 ## Key Features
 
 - **Dashboard:** Overview of core portfolio metrics like total portfolio value, active loan accounts, and default rates with interactive charts.
@@ -12,7 +15,7 @@ This is a frontend dashboard application for managing an enterprise loan portfol
 
 ## Tech Stack
 
-- **Frontend Core:** React, TypeScript, Vite
+- **Frontend Core:** React, Vite
 - **State Management:** Redux Toolkit
 - **Styles:** Tailwind CSS v4
 - **Charts:** Recharts
@@ -48,4 +51,4 @@ To build the project for production:
 ```bash
 npm run build
 ```
-This compiles the TypeScript files and outputs static assets to the `dist` directory, which can be deployed to static hosting platforms like Vercel or Netlify.
+This compiles the files and outputs static assets to the `dist` directory, which can be deployed to static hosting platforms like Vercel or Netlify.
