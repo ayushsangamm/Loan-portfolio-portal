@@ -1,6 +1,8 @@
 import { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Login } from "./pages/Login";
 
 // Lazy loading all routes with code splitting for excellent bundle optimization
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -15,17 +17,22 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Core system container shell */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="loans" element={<LoanList />} />
-          <Route path="loans/:id" element={<LoanDetail />} />
-          <Route path="add-loan" element={<AddLoan />} />
-          <Route path="borrowers/:id" element={<BorrowerProfile />} />
-          <Route path="pipeline" element={<Pipeline />} />
-          <Route path="calculator" element={<Calculator />} />
-          {/* Fallback route */}
-          <Route path="*" element={<Dashboard />} />
+        {/* Public login route */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Protected administrative routes wrapped in route guard */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="loans" element={<LoanList />} />
+            <Route path="loans/:id" element={<LoanDetail />} />
+            <Route path="add-loan" element={<AddLoan />} />
+            <Route path="borrowers/:id" element={<BorrowerProfile />} />
+            <Route path="pipeline" element={<Pipeline />} />
+            <Route path="calculator" element={<Calculator />} />
+            {/* Fallback route */}
+            <Route path="*" element={<Dashboard />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

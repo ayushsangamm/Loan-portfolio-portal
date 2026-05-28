@@ -10,6 +10,7 @@ import {
   AlertCircle,
   Sun,
   Moon,
+  LogOut,
 } from "lucide-react";
 import { format } from "date-fns";
 import { useLoans } from "../../hooks/useLoans";
@@ -20,7 +21,19 @@ export const Navbar = ({ onOpenSidebar }) => {
   const navigate = useNavigate();
   const [time, setTime] = useState(new Date());
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const { loans } = useLoans();
+
+  // Retrieve user session info from localStorage
+  const user = useMemo(() => {
+    const saved = localStorage.getItem("user_session");
+    return saved ? JSON.parse(saved) : { name: "Ayush Admin", role: "Portfolio Officer" };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user_session");
+    navigate("/login", { replace: true });
+  };
 
   // Initialize theme state from localStorage
   const [isDark, setIsDark] = useState(() => {
@@ -228,19 +241,48 @@ export const Navbar = ({ onOpenSidebar }) => {
           )}
         </div>
 
-        {/* User Card */}
-        <div className="flex items-center gap-3 pl-1.5 border-l border-slate-200/80">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600 border border-slate-200 shadow-2xs">
-            <User className="h-4.5 w-4.5" />
-          </div>
-          <div className="hidden text-left md:block">
-            <h4 className="text-xs font-bold text-slate-700 leading-tight">
-              Ayush Admin
-            </h4>
-            <p className="text-[10px] font-semibold text-brand-600 tracking-wide uppercase">
-              Portfolio Officer
-            </p>
-          </div>
+        {/* User Card with dropdown */}
+        <div className="relative">
+          <button 
+            onClick={() => setShowUserMenu(!showUserMenu)}
+            className="flex items-center gap-3 pl-1.5 border-l border-slate-200/80 cursor-pointer text-left hover:opacity-85 smooth-transition focus:outline-none"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600 border border-slate-200 shadow-2xs">
+              <User className="h-4.5 w-4.5" />
+            </div>
+            <div className="hidden text-left md:block">
+              <h4 className="text-xs font-bold text-slate-700 leading-tight">
+                {user.name}
+              </h4>
+              <p className="text-[10px] font-semibold text-brand-600 tracking-wide uppercase">
+                {user.role}
+              </p>
+            </div>
+          </button>
+
+          {/* User Menu Dropdown */}
+          {showUserMenu && (
+            <>
+              {/* Backdrop */}
+              <div 
+                className="fixed inset-0 z-40 bg-transparent"
+                onClick={() => setShowUserMenu(false)}
+              />
+              <div className="absolute right-0 mt-2.5 z-50 w-48 rounded-xl border border-slate-200 bg-white p-1.5 shadow-premium animate-fade-in">
+                <div className="px-3 py-2 border-b border-slate-100 md:hidden">
+                  <h5 className="text-xs font-bold text-slate-800">{user.name}</h5>
+                  <p className="text-[9px] font-semibold text-slate-400 uppercase">{user.role}</p>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-2 px-3 py-2 text-left text-xs font-bold text-rose-600 hover:bg-rose-50/50 rounded-lg cursor-pointer smooth-transition"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Secure Logout</span>
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </header>
