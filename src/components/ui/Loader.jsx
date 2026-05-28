@@ -17,7 +17,7 @@ export const CardSkeleton = () => (
 /**
  * Skeleton Loader for Data Tables.
  */
-export const TableSkeleton = ({ rows = 5, cols = 6 }: { rows?: number; cols?: number }) => (
+export const TableSkeleton = ({ rows = 5, cols = 6 }) => (
   <div className="w-full animate-pulse border-collapse overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-premium">
     <div className="border-b border-slate-200 bg-slate-50/50 p-4">
       <div className="h-5 w-40 rounded-md bg-slate-200" />
@@ -26,10 +26,10 @@ export const TableSkeleton = ({ rows = 5, cols = 6 }: { rows?: number; cols?: nu
       {Array.from({ length: rows }).map((_, rIdx) => (
         <div key={rIdx} className="flex items-center justify-between py-2">
           {Array.from({ length: cols }).map((_, cIdx) => (
-            <div 
-              key={cIdx} 
-              className="h-4 rounded-md bg-slate-200" 
-              style={{ width: `${Math.max(12, (cIdx + 1) * 14)}%` }} 
+            <div
+              key={cIdx}
+              className="h-4 rounded-md bg-slate-200"
+              style={{ width: `${Math.max(12, (cIdx + 1) * 14)}%` }}
             />
           ))}
         </div>
@@ -49,10 +49,10 @@ export const ChartSkeleton = () => (
     </div>
     <div className="flex w-full flex-1 items-end gap-3.5">
       {Array.from({ length: 12 }).map((_, idx) => (
-        <div 
-          key={idx} 
-          className="w-full rounded-t-lg bg-slate-200/80" 
-          style={{ height: `${Math.max(10, Math.sin(idx) * 50 + 50)}%` }} 
+        <div
+          key={idx}
+          className="w-full rounded-t-lg bg-slate-200/80"
+          style={{ height: `${Math.max(10, Math.sin(idx) * 50 + 50)}%` }}
         />
       ))}
     </div>

@@ -1,13 +1,12 @@
-import { useMemo } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/store';
-import { 
-  setStatusFilter, 
-  setSearchFilter, 
-  setSorting, 
-  setPage, 
-  resetFilters 
-} from '../features/loans/loansSlice';
-import type { LoanStatus } from '../features/loans/loanTypes';
+import { useMemo } from "react";
+import { useAppDispatch, useAppSelector } from "../app/store";
+import {
+  setStatusFilter,
+  setSearchFilter,
+  setSorting,
+  setPage,
+  resetFilters,
+} from "../features/loans/loansSlice";
 
 export const useFilters = () => {
   const dispatch = useAppDispatch();
@@ -18,15 +17,14 @@ export const useFilters = () => {
   const filteredLoans = useMemo(() => {
     return loans.filter((loan) => {
       // Status Filter
-      const matchesStatus = 
-        filters.status === 'All' || 
-        loan.status === filters.status;
+      const matchesStatus =
+        filters.status === "All" || loan.status === filters.status;
 
       // Search Filter (ID or Borrower Name)
       const searchTerm = filters.search.toLowerCase().trim();
-      const matchesSearch = 
-        searchTerm === '' || 
-        loan.id.toLowerCase().includes(searchTerm) || 
+      const matchesSearch =
+        searchTerm === "" ||
+        loan.id.toLowerCase().includes(searchTerm) ||
         loan.borrowerName.toLowerCase().includes(searchTerm);
 
       return matchesStatus && matchesSearch;
@@ -40,46 +38,46 @@ export const useFilters = () => {
     return [...filteredLoans].sort((a, b) => {
       let comparison = 0;
 
-      if (filters.sortBy === 'amount') {
+      if (filters.sortBy === "amount") {
         comparison = a.amount - b.amount;
-      } else if (filters.sortBy === 'dueDate') {
-        comparison = new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
-      } else if (filters.sortBy === 'status') {
+      } else if (filters.sortBy === "dueDate") {
+        comparison =
+          new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+      } else if (filters.sortBy === "status") {
         comparison = a.status.localeCompare(b.status);
       }
 
-      return filters.sortOrder === 'asc' ? comparison : -comparison;
+      return filters.sortOrder === "asc" ? comparison : -comparison;
     });
   }, [filteredLoans, filters.sortBy, filters.sortOrder]);
 
   // 3. Apply Pagination
   const totalFilteredCount = sortedLoans.length;
   const totalPages = Math.ceil(totalFilteredCount / filters.limit) || 1;
-  
   // Safe bounds check for page index
   const currentPage = Math.min(filters.page, totalPages);
-  
   const paginatedLoans = useMemo(() => {
     const startIndex = (currentPage - 1) * filters.limit;
     return sortedLoans.slice(startIndex, startIndex + filters.limit);
   }, [sortedLoans, currentPage, filters.limit]);
 
   // Action Dispatch wrappers
-  const changeStatus = (status: LoanStatus | 'All') => {
+  const changeStatus = (status) => {
     dispatch(setStatusFilter(status));
   };
 
-  const changeSearch = (search: string) => {
+  const changeSearch = (search) => {
     dispatch(setSearchFilter(search));
   };
 
-  const changeSorting = (sortBy: 'amount' | 'dueDate' | 'status' | '') => {
+  const changeSorting = (sortBy) => {
     const isSameField = filters.sortBy === sortBy;
-    const sortOrder = isSameField && filters.sortOrder === 'asc' ? 'desc' : 'asc';
+    const sortOrder =
+      isSameField && filters.sortOrder === "asc" ? "desc" : "asc";
     dispatch(setSorting({ sortBy, sortOrder }));
   };
 
-  const changePage = (page: number) => {
+  const changePage = (page) => {
     dispatch(setPage(page));
   };
 
@@ -90,7 +88,7 @@ export const useFilters = () => {
   return {
     filters,
     filteredLoans: sortedLoans, // Fully searched and sorted
-    paginatedLoans,             // Paginated slice for displaying
+    paginatedLoans, // Paginated slice for displaying
     totalPages,
     totalFilteredCount,
     currentPage,
@@ -98,6 +96,6 @@ export const useFilters = () => {
     changeSearch,
     changeSorting,
     changePage,
-    clearAllFilters
+    clearAllFilters,
   };
 };

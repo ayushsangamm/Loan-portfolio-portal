@@ -1,15 +1,15 @@
-import { lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Layout } from './components/layout/Layout';
+import { lazy } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/layout/Layout";
 
 // Lazy loading all routes with code splitting for excellent bundle optimization
-const Dashboard = lazy(() => import('./pages/Dashboard'));
-const LoanList = lazy(() => import('./pages/LoanList'));
-const LoanDetail = lazy(() => import('./pages/LoanDetail'));
-const AddLoan = lazy(() => import('./pages/AddLoan'));
-const BorrowerProfile = lazy(() => import('./pages/BorrowerProfile'));
-const Pipeline = lazy(() => import('./pages/Pipeline'));
-const Calculator = lazy(() => import('./pages/Calculator'));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const LoanList = lazy(() => import("./pages/LoanList"));
+const LoanDetail = lazy(() => import("./pages/LoanDetail"));
+const AddLoan = lazy(() => import("./pages/AddLoan"));
+const BorrowerProfile = lazy(() => import("./pages/BorrowerProfile"));
+const Pipeline = lazy(() => import("./pages/Pipeline"));
+const Calculator = lazy(() => import("./pages/Calculator"));
 
 export const App = () => {
   return (

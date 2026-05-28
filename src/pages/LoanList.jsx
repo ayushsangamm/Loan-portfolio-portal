@@ -1,20 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import { 
-  Search, 
-  PlusCircle, 
-  RotateCcw, 
+import { useNavigate } from "react-router-dom";
+import {
+  Search,
+  PlusCircle,
+  RotateCcw,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  UserCheck
-} from 'lucide-react';
-import { useFilters } from '../hooks/useFilters';
-import { useLoans } from '../hooks/useLoans';
-import { StatusBadge } from '../components/ui/StatusBadge';
-import { DataTable } from '../components/ui/DataTable';
-import type { Column } from '../components/ui/DataTable';
-import { formatCurrency } from '../utils/formatCurrency';
-import type { Loan, LoanStatus } from '../features/loans/loanTypes';
+  UserCheck,
+} from "lucide-react";
+import { useFilters } from "../hooks/useFilters";
+import { useLoans } from "../hooks/useLoans";
+import { StatusBadge } from "../components/ui/StatusBadge";
+import { DataTable } from "../components/ui/DataTable";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export const LoanList = () => {
   const navigate = useNavigate();
@@ -29,24 +27,24 @@ export const LoanList = () => {
     changeSearch,
     changeSorting,
     changePage,
-    clearAllFilters
+    clearAllFilters,
   } = useFilters();
 
-  const handleRowClick = (loan: Loan) => {
+  const handleRowClick = (loan) => {
     navigate(`/loans/${loan.id}`);
   };
 
-  const statusOptions: (LoanStatus | 'All')[] = ['All', 'Active', 'Pending', 'Closed', 'Defaulted'];
+  const statusOptions = ["All", "Active", "Pending", "Closed", "Defaulted"];
 
-  const columns: Column<Loan>[] = [
-    { 
-      header: 'Loan ID', 
-      accessor: 'id',
+  const columns = [
+    {
+      header: "Loan ID",
+      accessor: "id",
       sortable: true,
-      sortField: 'id'
+      sortField: "id",
     },
-    { 
-      header: 'Borrower Name', 
+    {
+      header: "Borrower Name",
       accessor: (loan) => (
         <button
           onClick={(e) => {
@@ -58,39 +56,48 @@ export const LoanList = () => {
           <UserCheck className="h-3.5 w-3.5 text-slate-400 group-hover:text-brand-500" />
           <span>{loan.borrowerName}</span>
         </button>
-      )
-    },
-    { 
-      header: 'Amount', 
-      accessor: (loan) => (
-        <span className="font-bold text-slate-800">{formatCurrency(loan.amount)}</span>
       ),
-      sortable: true,
-      sortField: 'amount'
-    },
-    { 
-      header: 'Interest Rate', 
-      accessor: (loan) => (
-        <span className="text-slate-600 font-bold">{loan.interestRate}% <span className="text-[10px] text-slate-400 font-semibold">p.a.</span></span>
-      )
-    },
-    { 
-      header: 'Status', 
-      accessor: (loan) => <StatusBadge status={loan.status} />,
-      sortable: true,
-      sortField: 'status'
-    },
-    { 
-      header: 'Due Date', 
-      accessor: (loan) => {
-        const d = new Date(loan.dueDate);
-        return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-      },
-      sortable: true,
-      sortField: 'dueDate'
     },
     {
-      header: 'Actions',
+      header: "Amount",
+      accessor: (loan) => (
+        <span className="font-bold text-slate-800">
+          {formatCurrency(loan.amount)}
+        </span>
+      ),
+      sortable: true,
+      sortField: "amount",
+    },
+    {
+      header: "Interest Rate",
+      accessor: (loan) => (
+        <span className="text-slate-600 font-bold">
+          {loan.interestRate}%{" "}
+          <span className="text-[10px] text-slate-400 font-semibold">p.a.</span>
+        </span>
+      ),
+    },
+    {
+      header: "Status",
+      accessor: (loan) => <StatusBadge status={loan.status} />,
+      sortable: true,
+      sortField: "status",
+    },
+    {
+      header: "Due Date",
+      accessor: (loan) => {
+        const d = new Date(loan.dueDate);
+        return d.toLocaleDateString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        });
+      },
+      sortable: true,
+      sortField: "dueDate",
+    },
+    {
+      header: "Actions",
       accessor: (loan) => (
         <button
           onClick={(e) => {
@@ -102,8 +109,8 @@ export const LoanList = () => {
           <span>Ledger</span>
           <ArrowRight className="h-3.5 w-3.5" />
         </button>
-      )
-    }
+      ),
+    },
   ];
 
   return (
@@ -111,14 +118,17 @@ export const LoanList = () => {
       {/* Header section with CTAs */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl font-bold tracking-tight text-slate-800 md:text-2xl leading-none">Loan Portfolio Ledger</h1>
+          <h1 className="text-xl font-bold tracking-tight text-slate-800 md:text-2xl leading-none">
+            Loan Portfolio Ledger
+          </h1>
           <p className="text-xs text-slate-400 mt-1.5 leading-normal">
-            View, search, filter, and audit active portfolio accounts ({totalFilteredCount} items).
+            View, search, filter, and audit active portfolio accounts (
+            {totalFilteredCount} items).
           </p>
         </div>
 
         <button
-          onClick={() => navigate('/add-loan')}
+          onClick={() => navigate("/add-loan")}
           className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-brand-500/10 hover:bg-brand-700 smooth-transition"
         >
           <PlusCircle className="h-4.5 w-4.5" />
@@ -148,9 +158,10 @@ export const LoanList = () => {
               onClick={() => changeStatus(opt)}
               className={`
                 rounded-xl px-3 py-2 text-xs font-semibold border smooth-transition
-                ${filters.status === opt
-                  ? 'bg-brand-600 text-white border-brand-600 shadow-2xs'
-                  : 'bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100 hover:text-slate-800'
+                ${
+                  filters.status === opt
+                    ? "bg-brand-600 text-white border-brand-600 shadow-2xs"
+                    : "bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100 hover:text-slate-800"
                 }
               `}
             >
@@ -159,7 +170,7 @@ export const LoanList = () => {
           ))}
 
           {/* Reset Filters CTA */}
-          {(filters.search || filters.status !== 'All' || filters.sortBy) && (
+          {(filters.search || filters.status !== "All" || filters.sortBy) && (
             <button
               onClick={clearAllFilters}
               className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 text-slate-400 hover:text-slate-600 hover:bg-slate-50 smooth-transition"
@@ -179,7 +190,7 @@ export const LoanList = () => {
         onRowClick={handleRowClick}
         sortBy={filters.sortBy}
         sortOrder={filters.sortOrder}
-        onSort={(field) => changeSorting(field as any)}
+        onSort={(field) => changeSorting(field)}
       />
 
       {/* Custom Pagination Controllers */}
@@ -206,9 +217,10 @@ export const LoanList = () => {
                   onClick={() => changePage(pNum)}
                   className={`
                     hidden sm:flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold border smooth-transition
-                    ${currentPage === pNum
-                      ? 'bg-brand-600 text-white border-brand-600 shadow-2xs'
-                      : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'
+                    ${
+                      currentPage === pNum
+                        ? "bg-brand-600 text-white border-brand-600 shadow-2xs"
+                        : "bg-white text-slate-500 border-slate-200 hover:bg-slate-50"
                     }
                   `}
                 >

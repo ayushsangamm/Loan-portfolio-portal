@@ -1,53 +1,57 @@
-import { useNavigate } from 'react-router-dom';
-import { 
-  Briefcase, 
-  CheckCircle, 
-  Coins, 
+import { useNavigate } from "react-router-dom";
+import {
+  Briefcase,
+  CheckCircle,
+  Coins,
   AlertOctagon,
   ArrowRight,
-  TrendingUp
-} from 'lucide-react';
-import { useLoans } from '../hooks/useLoans';
-import { LoanCard } from '../components/ui/LoanCard';
-import { LoanTrendChart } from '../components/charts/LoanTrendChart';
-import { StatusPieChart } from '../components/charts/StatusPieChart';
-import { StatusBadge } from '../components/ui/StatusBadge';
-import { DataTable } from '../components/ui/DataTable';
-import type { Column } from '../components/ui/DataTable';
-import { CardSkeleton, ChartSkeleton } from '../components/ui/Loader';
-import { formatCurrency } from '../utils/formatCurrency';
-import type { Loan } from '../features/loans/loanTypes';
+  TrendingUp,
+} from "lucide-react";
+import { useLoans } from "../hooks/useLoans";
+import { LoanCard } from "../components/ui/LoanCard";
+import { LoanTrendChart } from "../components/charts/LoanTrendChart";
+import { StatusPieChart } from "../components/charts/StatusPieChart";
+import { StatusBadge } from "../components/ui/StatusBadge";
+import { DataTable } from "../components/ui/DataTable";
+import { CardSkeleton, ChartSkeleton } from "../components/ui/Loader";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
   const { loans, isLoading, summaryStats, recentLoans } = useLoans();
 
-  const handleRowClick = (loan: Loan) => {
+  const handleRowClick = (loan) => {
     navigate(`/loans/${loan.id}`);
   };
 
-  const columns: Column<Loan>[] = [
-    { header: 'Loan ID', accessor: 'id' },
-    { header: 'Borrower', accessor: 'borrowerName' },
-    { 
-      header: 'Amount', 
+  const columns = [
+    { header: "Loan ID", accessor: "id" },
+    { header: "Borrower", accessor: "borrowerName" },
+    {
+      header: "Amount",
       accessor: (loan) => (
-        <span className="font-bold text-slate-800">{formatCurrency(loan.amount)}</span>
-      )
-    },
-    { 
-      header: 'Disbursement Date', 
-      accessor: (loan) => {
-        const d = new Date(loan.disbursementDate);
-        return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-      }
-    },
-    { 
-      header: 'Status', 
-      accessor: (loan) => <StatusBadge status={loan.status} /> 
+        <span className="font-bold text-slate-800">
+          {formatCurrency(loan.amount)}
+        </span>
+      ),
     },
     {
-      header: 'Actions',
+      header: "Disbursement Date",
+      accessor: (loan) => {
+        const d = new Date(loan.disbursementDate);
+        return d.toLocaleDateString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        });
+      },
+    },
+    {
+      header: "Status",
+      accessor: (loan) => <StatusBadge status={loan.status} />,
+    },
+    {
+      header: "Actions",
       accessor: (loan) => (
         <button
           onClick={(e) => {
@@ -59,8 +63,8 @@ export const Dashboard = () => {
           <span>Ledger</span>
           <ArrowRight className="h-3 w-3" />
         </button>
-      )
-    }
+      ),
+    },
   ];
 
   if (isLoading) {
@@ -90,12 +94,18 @@ export const Dashboard = () => {
       <div className="rounded-3xl bg-gradient-to-r from-slate-900 via-slate-850 to-slate-950 p-6 md:p-8 border border-slate-800 text-white shadow-premium">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-xl font-bold tracking-tight md:text-2xl leading-none">Portfolio Overview</h1>
-            <p className="text-xs text-slate-400 mt-1.5 leading-normal">Operational risk indicators and capital trends report as of today.</p>
+            <h1 className="text-xl font-bold tracking-tight md:text-2xl leading-none">
+              Portfolio Overview
+            </h1>
+            <p className="text-xs text-slate-400 mt-1.5 leading-normal">
+              Operational risk indicators and capital trends report as of today.
+            </p>
           </div>
           <div className="flex items-center gap-2 rounded-xl bg-slate-800/50 border border-slate-700/30 px-4 py-2.5">
             <TrendingUp className="h-4.5 w-4.5 text-emerald-400" />
-            <span className="text-xs font-bold text-slate-200">Active Capital Allocation</span>
+            <span className="text-xs font-bold text-slate-200">
+              Active Capital Allocation
+            </span>
           </div>
         </div>
       </div>
@@ -109,6 +119,7 @@ export const Dashboard = () => {
           description="Active Capital"
           color="blue"
         />
+
         <LoanCard
           title="Total Loans"
           value={summaryStats.totalLoans}
@@ -116,6 +127,7 @@ export const Dashboard = () => {
           description="Cumulative Ledger"
           color="indigo"
         />
+
         <LoanCard
           title="Active Accounts"
           value={summaryStats.activeLoans}
@@ -123,6 +135,7 @@ export const Dashboard = () => {
           description="Earning Accounts"
           color="emerald"
         />
+
         <LoanCard
           title="Default Rate"
           value={`${summaryStats.defaultRate}%`}
@@ -146,11 +159,15 @@ export const Dashboard = () => {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-base font-bold text-slate-800 tracking-tight leading-none md:text-lg">Recent Disbursements</h3>
-            <p className="text-xs text-slate-400 mt-1 leading-normal">Review latest portfolios added onto the gateway</p>
+            <h3 className="text-base font-bold text-slate-800 tracking-tight leading-none md:text-lg">
+              Recent Disbursements
+            </h3>
+            <p className="text-xs text-slate-400 mt-1 leading-normal">
+              Review latest portfolios added onto the gateway
+            </p>
           </div>
-          <button 
-            onClick={() => navigate('/loans')}
+          <button
+            onClick={() => navigate("/loans")}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-800 smooth-transition"
           >
             <span>View Full Ledger</span>
