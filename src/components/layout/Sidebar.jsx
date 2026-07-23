@@ -30,23 +30,23 @@ export const Sidebar = ({ isOpen, onClose }) => {
 
       <aside
         className={`
-        fixed bottom-0 top-0 left-0 z-50 flex w-72 flex-col bg-slate-950 text-slate-100 border-r border-slate-800/60 smooth-transition
+        fixed bottom-0 top-0 left-0 z-50 flex w-64 flex-col bg-slate-950 text-slate-100 border-r border-slate-800 transition-transform duration-200
         lg:sticky lg:z-30 lg:translate-x-0
         ${isOpen ? "translate-x-0" : "-translate-x-full"}
       `}
       >
         {/* Brand Logo Header */}
-        <div className="flex h-16 items-center justify-between px-6 border-b border-slate-800/40">
+        <div className="flex h-16 items-center justify-between px-5 border-b border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 shadow-md shadow-brand-500/20">
-              <FolderLock className="h-5.5 w-5.5 text-white" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm">
+              <FolderLock className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="text-sm font-bold tracking-tight text-white leading-tight">
+              <h1 className="text-sm font-semibold tracking-tight text-white leading-tight">
                 CapitalFlow
               </h1>
-              <p className="text-[10px] font-medium text-slate-400 tracking-wider uppercase">
-                Loan Systems
+              <p className="text-[10px] font-medium text-slate-400">
+                Loan Portfolio System
               </p>
             </div>
           </div>
@@ -54,14 +54,14 @@ export const Sidebar = ({ isOpen, onClose }) => {
           {/* Mobile Close Button */}
           <button
             onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-800/50 bg-slate-900 text-slate-400 hover:text-white lg:hidden smooth-transition"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-white lg:hidden"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 space-y-1.5 px-4 py-6 overflow-y-auto">
+        <nav className="flex-1 space-y-1 px-3 py-5 overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -70,11 +70,11 @@ export const Sidebar = ({ isOpen, onClose }) => {
                 to={item.path}
                 onClick={onClose}
                 className={({ isActive }) => `
-                  flex items-center gap-3.5 px-4 py-3 text-sm font-medium rounded-xl smooth-transition group
+                  flex items-center gap-3 px-3 py-2.5 text-xs font-medium rounded-lg transition-colors group
                   ${
                     isActive
-                      ? "bg-brand-600/90 text-white shadow-lg shadow-brand-600/10"
-                      : "text-slate-400 hover:bg-slate-900/60 hover:text-white"
+                      ? "bg-indigo-600 text-white shadow-sm"
+                      : "text-slate-400 hover:bg-slate-900 hover:text-slate-200"
                   }
                 `}
               >
@@ -82,14 +82,11 @@ export const Sidebar = ({ isOpen, onClose }) => {
                   <>
                     <Icon
                       className={`
-                      h-5 w-5 smooth-transition
-                      ${isActive ? "text-white" : "text-slate-400 group-hover:text-white"}
+                      h-4.5 w-4.5 transition-colors
+                      ${isActive ? "text-white" : "text-slate-400 group-hover:text-slate-200"}
                     `}
                     />
                     <span>{item.name}</span>
-                    {isActive && (
-                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-white" />
-                    )}
                   </>
                 )}
               </NavLink>
@@ -98,16 +95,16 @@ export const Sidebar = ({ isOpen, onClose }) => {
         </nav>
 
         {/* Footer Sidebar Info */}
-        <div className="p-4 border-t border-slate-900 bg-slate-950/40">
-          <div className="rounded-xl bg-slate-900/50 p-4 border border-slate-800/30">
-            <div className="flex items-center gap-3">
-              <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
-                Gateway Online
+        <div className="p-4 border-t border-slate-900">
+          <div className="rounded-lg bg-slate-900/60 p-3 border border-slate-800">
+            <div className="flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="text-[11px] font-medium text-slate-300">
+                System Active
               </span>
             </div>
-            <p className="mt-1 text-[11px] text-slate-500 leading-normal">
-              Operational Portal v3.4.1
+            <p className="mt-0.5 text-[10px] text-slate-500">
+              Enterprise v3.4.1
             </p>
           </div>
         </div>
