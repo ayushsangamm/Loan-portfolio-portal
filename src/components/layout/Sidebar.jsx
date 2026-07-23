@@ -43,7 +43,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
             </div>
             <div>
               <h1 className="text-sm font-bold tracking-tight text-white leading-tight">
-                Antigravity
+                CapitalFlow
               </h1>
               <p className="text-[10px] font-medium text-slate-400 tracking-wider uppercase">
                 Loan Systems
