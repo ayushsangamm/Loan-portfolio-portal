@@ -57,7 +57,7 @@ export const Login = () => {
             <FolderLock className="h-6.5 w-6.5 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-extrabold tracking-tight text-white leading-none">Antigravity Portal</h1>
+            <h1 className="text-xl font-extrabold tracking-tight text-white leading-none">CapitalFlow Portal</h1>
             <p className="text-xs font-semibold text-slate-400 mt-1.5 uppercase tracking-widest">Enterprise Loan Systems</p>
           </div>
         </div>
