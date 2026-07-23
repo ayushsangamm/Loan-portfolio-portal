@@ -43,34 +43,27 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-tr from-slate-950 via-slate-900 to-slate-950 p-4 relative overflow-hidden font-sans">
-      {/* Decorative premium radial ambient background highlights */}
-      <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
-
+    <div className="min-h-screen w-full flex items-center justify-center bg-slate-950 p-4 font-sans text-slate-100">
       {/* Main Container */}
-      <div className="w-full max-w-md relative z-10 space-y-6">
+      <div className="w-full max-w-md space-y-6">
         
         {/* Core Header Identity Logo */}
-        <div className="flex flex-col items-center text-center space-y-2 mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-brand-600 to-brand-400 shadow-lg shadow-brand-500/20 ring-1 ring-white/10">
-            <FolderLock className="h-6.5 w-6.5 text-white" />
+        <div className="flex flex-col items-center text-center space-y-2 mb-2">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-md">
+            <FolderLock className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-xl font-extrabold tracking-tight text-white leading-none">CapitalFlow Portal</h1>
-            <p className="text-xs font-semibold text-slate-400 mt-1.5 uppercase tracking-widest">Enterprise Loan Systems</p>
+            <h1 className="text-xl font-bold tracking-tight text-white">CapitalFlow Portal</h1>
+            <p className="text-xs text-slate-400 mt-1">Enterprise Loan Portfolio Management</p>
           </div>
         </div>
 
-        {/* Glassmorphic Login Form Card */}
-        <div className="rounded-3xl border border-white/10 bg-slate-900/60 backdrop-blur-xl p-8 shadow-2xl relative overflow-hidden">
+        {/* Clean Login Form Card */}
+        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl">
           
           <div className="mb-6">
-            <h3 className="text-lg font-black text-white tracking-tight flex items-center gap-1.5 leading-none">
-              <Sparkles className="h-4.5 w-4.5 text-amber-400" />
-              <span>Officer Authentication</span>
-            </h3>
-            <p className="text-xs text-slate-400 mt-1 leading-normal">Enter credentials to unlock administrative credit worksheets.</p>
+            <h2 className="text-base font-semibold text-white">Sign in to your account</h2>
+            <p className="text-xs text-slate-400 mt-1">Enter your administrative credentials below.</p>
           </div>
 
           {/* Form */}
@@ -85,41 +78,41 @@ export const Login = () => {
 
             {/* Input 1: Username */}
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Username</label>
+              <label className="text-xs font-medium text-slate-300">Username</label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400 pointer-events-none">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 pointer-events-none">
                   <User className="h-4 w-4" />
                 </span>
                 <input 
                   type="text" 
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Enter administrator username" 
+                  placeholder="admin" 
                   required
-                  className="w-full bg-slate-950/50 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 smooth-transition"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                 />
               </div>
             </div>
 
             {/* Input 2: Password */}
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Security Code / Password</label>
+              <label className="text-xs font-medium text-slate-300">Password</label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400 pointer-events-none">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 pointer-events-none">
                   <Lock className="h-4 w-4" />
                 </span>
                 <input 
                   type={showPassword ? "text" : "password"} 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter security password" 
+                  placeholder="••••••••" 
                   required
-                  className="w-full bg-slate-950/50 border border-white/10 rounded-xl pl-10 pr-10 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 smooth-transition"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-9 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-white smooth-transition"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-200"
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -130,29 +123,23 @@ export const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-extrabold text-xs shadow-lg shadow-brand-500/10 cursor-pointer smooth-transition active:scale-98 ${
+              className={`w-full py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs shadow cursor-pointer transition-colors ${
                 isLoading ? "opacity-60 cursor-not-allowed" : ""
               }`}
             >
-              {isLoading ? "Validating Credit Dossier..." : "Secure Sign In"}
+              {isLoading ? "Signing in..." : "Sign in"}
             </button>
           </form>
 
           {/* Quick Fill Demo Hint */}
-          <div className="mt-6 pt-5 border-t border-white/5 text-center">
-            <p className="text-[10px] text-slate-400 font-semibold leading-normal">
-              Recruiter Testing / Demo Mode?
-            </p>
+          <div className="mt-6 pt-4 border-t border-slate-800 text-center">
             <button
+              type="button"
               onClick={handleQuickFill}
-              className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-bold text-brand-400 hover:text-brand-300 smooth-transition cursor-pointer border-b border-dashed border-brand-400/40"
+              className="text-xs font-medium text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
             >
-              <span>Auto-fill Demo Credentials</span>
+              Click to Auto-fill Demo Credentials (admin / admin123)
             </button>
-            <div className="flex justify-center gap-4 text-[9px] text-slate-500 font-medium mt-2.5 bg-slate-950/30 py-1.5 rounded-lg border border-white/5">
-              <span>User: <strong className="text-slate-300">admin</strong></span>
-              <span>Pass: <strong className="text-slate-300">admin123</strong></span>
-            </div>
           </div>
 
         </div>
